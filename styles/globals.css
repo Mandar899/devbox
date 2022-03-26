@@ -8,3 +8,9 @@
 body {
   font-family: "Epilogue";
 }
+
+@layer components {
+  .btn {
+    @apply px-4 py-3 font-semibold text-white uppercase tracking-wider bg-[#E5202B] rounded-md;
+  }
+}
