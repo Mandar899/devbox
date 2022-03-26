@@ -11,6 +11,6 @@ body {
 
 @layer components {
   .btn {
-    @apply px-4 py-3 font-semibold text-white uppercase tracking-wider bg-[#E5202B] rounded-md;
+    @apply px-4 py-3 text-base font-semibold text-white tracking-wider bg-[#E5202B] rounded-md;
   }
 }

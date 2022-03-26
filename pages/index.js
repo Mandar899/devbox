@@ -16,8 +16,12 @@ export default function Home() {
         </h1>
 
         <div className="flex items-center space-x-10">
-          <button className="btn">Register</button>
-          <button className="btn">Login</button>
+          <button className="btn" onClick={() => router.push("/register")}>
+            Register
+          </button>
+          <button className="btn" onClick={() => router.push("/login")}>
+            Login
+          </button>
         </div>
       </div>
     </div>
