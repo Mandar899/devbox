@@ -43,6 +43,7 @@ export default async function handler(req, res) {
     console.log("Refresh-Token: ", refreshToken);
 
     return res.json({
+      status: "ok",
       accessToken: accessToken,
       refreshToken: refreshToken,
     });

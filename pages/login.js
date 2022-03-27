@@ -8,10 +8,10 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(username, password);
-    fetch("/api/users/login", {
+    const res = await fetch("/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,11 +20,14 @@ const Login = () => {
         username,
         password,
       }),
-    }).then((res) => res.json());
+    });
+    const data = await res.json();
 
+    if (data.status === "ok") {
+      router.push("/");
+    }
     setUsername("");
     setPassword("");
-    router.push("/");
   };
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-[#0C0C0C] py-32">
