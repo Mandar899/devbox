@@ -1,11 +1,30 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { useState } from "react";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(username, password);
+    fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    }).then((res) => res.json());
+
+    setUsername("");
+    setPassword("");
+    router.push("/");
   };
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-[#0C0C0C] py-32">
@@ -20,12 +39,16 @@ const Login = () => {
               className="w-full px-5 py-3 text-gray-200 bg-gray-800 rounded-sm outline-none text-md"
               type="text"
               placeholder="Enter username..."
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
 
             <input
               className="w-full px-5 py-3 text-gray-200 bg-gray-800 rounded-sm outline-none text-md"
               type="password"
               placeholder="Enter password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <button className="btn">Log In</button>
@@ -39,15 +62,15 @@ const Login = () => {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-[#E5202B] text-xl"
+          className="h-6 w-6 text-[#E5202B] text-xl"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          stroke-width="2"
+          strokeWidth="2"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
           />
         </svg>
